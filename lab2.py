@@ -16,10 +16,16 @@ class App:
         self.screen = pygame.display.set_mode((screen_width, screen_height))
         self.screen = pygame.display.set_mode((screen_width, screen_height))
         self.clock = pygame.time.Clock()
-
+        
         self.running = True
 
-        self.ball = Agent()
+        self.ball = Agent(position = Vector2(screen_width/2,screen_height/2),
+                          radius = 100,
+                          color = (100,50,225),
+                          vel = Vector2(0,0),
+                          acc = Vector2(0,0))
+
+        self.target = Vector2(0,0)
 
     def handle_input(self):
         for event in pygame.event.get():
@@ -30,9 +36,12 @@ class App:
                 # esc pressed
                 if event.key == pygame.K_ESCAPE:
                     self.running = False
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        self.target = Vector2(mouse_x, mouse_y) 
 
-    def update(self):
-        self.ball.update()
+    def update(self, delta_time):
+        self.ball.seek_to(self.target)
+        self.ball.update(delta_time)
     
     def draw(self):
         self.screen.fill("white")
@@ -41,11 +50,10 @@ class App:
         
     def run(self):
         while self.running:
+            delta_time = self.clock.tick(60)  # limits FPS to 60
             self.handle_input()
-            self.update()
+            self.update(delta_time)
             self.draw()
-
-            self.clock.tick(60)  # limits FPS to 60
 
         pygame.quit()
     
