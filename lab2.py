@@ -13,7 +13,7 @@ class App:
 
         # pygame setup
         pygame.init()
-        screen = pygame.display.set_mode((screen_width, screen_height))
+        self.screen = pygame.display.set_mode((screen_width, screen_height))
         self.screen = pygame.display.set_mode((screen_width, screen_height))
         self.clock = pygame.time.Clock()
 
@@ -32,7 +32,7 @@ class App:
                     self.running = False
 
     def update(self):
-        pass
+        self.ball.update()
     
     def draw(self):
         self.screen.fill("white")
