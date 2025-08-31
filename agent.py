@@ -2,7 +2,6 @@ import pygame
 from pygame.draw import circle
 from pygame.math import Vector2
 
-
 class Agent:
     def __init__(self):
         self.circle_color = (100,50,225)
