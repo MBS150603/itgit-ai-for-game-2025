@@ -45,20 +45,20 @@ class Food:
     #         steering.scale_to_length(MAXFORCE)
     #     self.apply_force(steering)
 
-    # def flee_form(self, target_pos):
-    #     MAXFORCE = 5
-    #     d = (target_pos - self.position) * -1
-    #     if d.length_squared() == 0:
-    #         return
-    #     dist = d.length()
-    #     if dist > self.EYE_SIGHT:
-    #         desired = Vector2(0,0)
-    #     else:
-    #         desired = d.normalize() * (MAXFORCE * ((self.EYE_SIGHT - dist)/self.EYE_SIGHT))
-    #     steering = desired - self.vel
-    #     if steering.length() > MAXFORCE:
-    #         steering.scale_to_length(MAXFORCE)
-    #     self.apply_force(steering)
+    def flee_form(self, target_pos):
+        MAXFORCE = 5
+        d = (target_pos - self.position) * -1
+        if d.length_squared() == 0:
+            return
+        dist = d.length()
+        if dist > self.EYE_SIGHT:
+            desired = self.vel
+        else:
+            desired = d.normalize() * (MAXFORCE * ((self.EYE_SIGHT - dist)/self.EYE_SIGHT))
+        steering = desired - self.vel
+        if steering.length() > MAXFORCE:
+            steering.scale_to_length(MAXFORCE)
+        self.apply_force(steering)
     
     # def patrol(self, target_pos):
     #     MAXFORCE = 5
