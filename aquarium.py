@@ -247,7 +247,10 @@ class App:
                 agent.flee_from(self.agents_3[i].center_of_mass)
 
             for i,seahorse in enumerate(self.seahorses):
-                seahorse.flee_from(self.seahorses[i].center_of_mass)
+                agent.flee_from(self.seahorses[i].center_of_mass)
+
+            for i,f in enumerate(self.food_3):
+                agent.flee_from(self.food_3[i].position)
 
         # self.manager.update(delta_time_s)
 
@@ -355,10 +358,12 @@ class App:
 
             for i,seahorse in enumerate(self.seahorses):
                 seahorse.flee_from(self.seahorses[i].center_of_mass)
+
+            for i,f in enumerate(self.food_3):
+                agent.flee_from(self.food_3[i].position)
         # self.manager.update(delta_time_s)
 
         for seahorse in self.seahorses:
-
             target = (seahorse.center_of_mass + seahorse.position)
             # target.x = random.randint(0, screen_width-50)
 
@@ -386,6 +391,9 @@ class App:
             for i,jelly in enumerate(self.jellyfishes):
                 seahorse.flee_from(self.jellyfishes[i].position)
 
+            for i,f in enumerate(self.food_3):
+                seahorse.flee_from(self.food_3[i].position)
+
         for jelly in self.jellyfishes:
             # jelly.target = Vector2(random.randint(-(screen_width/2),screen_width) , random.randint(-(screen_height/2),screen_height))
             # target = jelly.position - jelly.vel
@@ -407,6 +415,9 @@ class App:
             jelly.seek_to(target)
             jelly.update(delta_time_s)
             self.bound_check(jelly)
+    
+            for i,f in enumerate(self.food_3):
+                jelly.flee_from(self.food_3[i].position)
         # self.manager.update(delta_time_s)
 
     def draw(self):
