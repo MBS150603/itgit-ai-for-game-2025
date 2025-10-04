@@ -25,6 +25,7 @@ class App:
         self.fish_3_image = pygame.image.load("Images/fish_3.png")
         self.seahorse_image = pygame.image.load("Images/seahorse.png")
         self.jellyfish_image = pygame.image.load("Images/jellyfish.png")
+        self.jellyfish_image = pygame.transform.scale(self.jellyfish_image,(75,75))
 
         self.coralP_image = pygame.image.load("Images/coral_pink.png")
         self.coralG_image = pygame.image.load("Images/coral_green.png")
@@ -238,6 +239,8 @@ class App:
             self.bound_check(agent)
 
             for i,jelly in enumerate(self.jellyfishes):
+                jelly.STOP_DIST = 50
+                jelly.EYE_SIGHT = 200
                 agent.flee_from(self.jellyfishes[i].position)
 
             for i,agent in enumerate(self.agents_2):
@@ -313,6 +316,8 @@ class App:
             self.bound_check(agent)
 
             for i,jelly in enumerate(self.jellyfishes):
+                jelly.STOP_DIST = 50
+                jelly.EYE_SIGHT = 200
                 agent.flee_from(self.jellyfishes[i].position)
 
             # for i,agent in enumerate(self.agents_3):
@@ -354,6 +359,8 @@ class App:
             self.bound_check(agent)
 
             for i,jelly in enumerate(self.jellyfishes):
+                jelly.STOP_DIST = 50
+                jelly.EYE_SIGHT = 200
                 agent.flee_from(self.jellyfishes[i].position)
 
             for i,seahorse in enumerate(self.seahorses):
@@ -389,6 +396,8 @@ class App:
             self.bound_check(seahorse)
             
             for i,jelly in enumerate(self.jellyfishes):
+                jelly.STOP_DIST = 50
+                jelly.EYE_SIGHT = 200
                 seahorse.flee_from(self.jellyfishes[i].position)
 
             for i,f in enumerate(self.food_3):
